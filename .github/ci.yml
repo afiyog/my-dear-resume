@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+ 
+jobs:
+  
+  build:
+   
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: build image
+        run: docker build -t afiyog/mydear-resume
+      - name: push image
+        run: |
+        dockerlogin -u ${{REGISTRY_USER}} -P
